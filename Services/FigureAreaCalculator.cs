@@ -77,7 +77,7 @@ namespace FlatFiguresFields.Services
                     figure.ErrorMessage = "Please enter the required data.";
                     return figure;
                 }
-            figure.Varriables = figure.Values.Trim().Split(' ').ToList();
+            figure.Varriables = figure.Values.Trim().Replace('.', ',').Split(' ').ToList();
 
             if(!IsConversionToDoublePossible(figure.Varriables))
                 {
