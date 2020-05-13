@@ -6,6 +6,8 @@ using System.Threading.Tasks;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.Extensions.Logging;
 using FlatFiguresFields.Models;
+using FlatFiguresFields.ViewModels;
+using System.Text.RegularExpressions;
 
 namespace FlatFiguresFields.Controllers
 {

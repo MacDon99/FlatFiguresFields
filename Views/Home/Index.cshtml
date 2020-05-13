@@ -1,8 +1,42 @@
-﻿@{
+﻿@model Figure
+@{
     ViewData["Title"] = "Home Page";
 }
 
 <div class="text-center">
-    <h1 class="display-4">Welcome</h1>
-    <p>Learn about <a href="https://docs.microsoft.com/aspnet/core">building Web apps with ASP.NET Core</a>.</p>
+    <form asp-action="GetInfo" asp-controller="Home">
+        <select id ="FiguresSelect" asp-for="Name">
+            <option id = "None">Select Figure</option>
+            <option id = "Rectangle">Rectangle</option>
+            <option id = "Square">Square</option>
+            <option id = "Triangle">Triangle</option>
+            <option id = "Circle">Circle</option>
+            <option id = "Trapeze">Trapeze</option>
+        </select>
+        <br>
+        <label id = "selectedItem">Proszę wybrać figurę.</label>
+        <br>
+        <input asp-for="Values" type="text">
+        <input type="submit">
+    </form>
+
+    @section Scripts
+    {
+    <script>   
+    $("#FiguresSelect").change(function () {
+        var value = $(this).children(":selected").attr("id");
+        switch(value)
+        {
+            case 'None': $("#selectedItem").text("Please select a figure."); break;
+            case 'Rectangle': $("#selectedItem").text("To get a rectangle area, please type side lengths separated by space. Order does not matter");break; 
+            case 'Square': $("#selectedItem").text("To get square area please type its side length."); break;
+            case 'Triangle': $("#selectedItem").text("To get a triangle area please type its base length and a high separated by space. Example: baseLength highLength."); break;
+            case 'Circle': $("#selectedItem").text("To get a circle area please type its radius."); break;
+            case 'Trapeze': $("#selectedItem").text("To get trapeze area please type its bases lengths and its high separated by space. Example: firstBase secondBase high."); break;
+            default: console.log("error");
+        }
+    });
+
+    </script>
+    }
 </div>
