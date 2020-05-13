@@ -14,10 +14,18 @@
             <option id = "Trapeze">Trapeze</option>
         </select>
         <br>
-        <label id = "selectedItem">Proszę wybrać figurę.</label>
+        <label id = "selectedItem">Please select a figure.</label>
         <br>
-        <input asp-for="Values" type="text">
-        <input type="submit">
+        <input id ="valuesTextBox" asp-for="Values" type="hidden">
+
+        <input id = "submitButton" type="hidden" value="Submit">
+        <br>
+        @if (Model != null && Model.ErrorMessage != null){
+            <label>@Model.ErrorMessage</label>
+        } else if(Model != null)
+        {
+        <label id = "resultLabel" >Result: @Model.Answear</label>
+        }
     </form>
 
     @section Scripts
@@ -36,7 +44,24 @@
             default: console.log("error");
         }
     });
-
+    $("#FiguresSelect").change( function() {
+        if($("#FiguresSelect").children(":selected").attr("id") != "None")
+        {
+        $("#valuesTextBox").prop("type", "text")
+        $("#submitButton").prop("type", "submit")
+        } else {
+        $("#valuesTextBox").prop("type", "hidden")
+        $("#submitButton").prop("type", "hidden")
+        }
+        $("#resultLabel").text("");
+        $("#valuesTextBox").text("");
+        
+    });
+    if($("#FiguresSelect").children(":selected").attr("id") != "None")
+    {
+        $("#valuesTextBox").prop("type", "text")
+        $("#submitButton").prop("type", "submit")
+    }
     </script>
     }
 </div>

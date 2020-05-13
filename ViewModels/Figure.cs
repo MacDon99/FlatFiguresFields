@@ -8,7 +8,7 @@ namespace FlatFiguresFields.ViewModels
         public string Values { get; set; }
         public List<string> Varriables { get; set; }
         public string ErrorMessage { get; set; }
-        public string Answear { get; set; }
+        public string Answear { get; set; } = "";
         public Figure()
         {
             Varriables = new List<string>();

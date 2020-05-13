@@ -22,19 +22,25 @@ namespace FlatFiguresFields.Controllers
             _calculator = calculator;
         }
 
-        public IActionResult Index()
-        {
-            return View();
-        }
+
 
         public IActionResult Privacy()
         {
             return View();
         }
-
+        [HttpGet]
+        public IActionResult Index()
+        {
+            return View();
+        }
+        [HttpPost]
+        public IActionResult Index(Figure figure)
+        {
+            return View(figure);
+        }
         public IActionResult Calculate(Figure figure)
         {
-            return RedirectToAction("Index", _calculator.CalculateArea(figure));
+            return View("Index", _calculator.CalculateArea(figure));
         }
 
         [ResponseCache(Duration = 0, Location = ResponseCacheLocation.None, NoStore = true)]

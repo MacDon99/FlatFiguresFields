@@ -2,6 +2,7 @@ using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
+using FlatFiguresFields.Helpers;
 using FlatFiguresFields.Services;
 using Microsoft.AspNetCore.Builder;
 using Microsoft.AspNetCore.Hosting;
@@ -25,6 +26,7 @@ namespace FlatFiguresFields
         public void ConfigureServices(IServiceCollection services)
         {
             services.AddControllersWithViews();
+            services.AddScoped<AreaCalculatorHelper>();
             services.AddScoped<IFigureAreaCalculator, FigureAreaCalculator>();
         }
 
