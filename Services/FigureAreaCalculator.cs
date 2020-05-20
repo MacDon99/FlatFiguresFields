@@ -27,6 +27,7 @@ namespace FlatFiguresFields.Services
         private bool IsConversionToDoublePossible(List<string> values)
         {
             foreach(var val in values)
+            {
                 try
                 {
                     Convert.ToDouble(val);
@@ -35,6 +36,11 @@ namespace FlatFiguresFields.Services
                 {
                     return false;
                 }
+                if(Convert.ToDouble(val)<0)
+                {
+                    return false;
+                }
+            }
             return true;
         }
         private bool ValidateVarriables(Figure figure)
@@ -55,7 +61,7 @@ namespace FlatFiguresFields.Services
             {
                 return true;
             }
-            if(figure.Name == "Trapeze" && figure.Varriables.Count == 3)
+            if(figure.Name == "Trapeze" && figure.Varriables.Count == 3 )
             {
                 return true;
             }
@@ -82,12 +88,10 @@ namespace FlatFiguresFields.Services
             if(!IsConversionToDoublePossible(figure.Varriables))
                 {
                     figure.ErrorMessage = "Please type valid numbers (integers od decimals)";
-                    System.Console.WriteLine(figure.ErrorMessage);
                 }
             if(!ValidateVarriables(figure))
             {
                 figure.ErrorMessage = "Please enter the right amount of information.";
-                System.Console.WriteLine(figure.ErrorMessage);
             }
             return figure;
         }
